@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// A través del schema gestionamos
+// la estructura de la base de datos
+// por cada cambio que queramos aplicar
+// a la base de datos, se debe generar una
+// MIGRACIÓN y aplicarla a la BD en el servidor
+
+// un modelo, es una tabla en la BD
+model User {
+  id    String  @id @default(cuid())
+  name  String
+  username  String  @unique
+  email     String  @unique
+  image     String?
+  password  String
+  active    Boolean @default(true)
+
+  // timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime?
+}
