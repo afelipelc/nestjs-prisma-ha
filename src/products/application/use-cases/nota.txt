@@ -1,0 +1,12 @@
+Los services se implementan en la capa de aplicación.
+
+En este ejemplo se implementan UseCases que son servicios de aplicación.
+
+Los services se pueden implementar para agrupar lógicas que no son directamente casos de uso pero que orquestan interacciones entre diferentes entidades del dominio, o que actúan como "delegados" para los casos de uso más específicos si estos fueran muy numerosos.
+
+---
+Considera implementar un ProductService en los siguientes escenarios:
+
+- Orquestación de Múltiples Casos de Uso: Si tuvieras una operación de alto nivel que internamente invoca varios casos de uso más pequeños para completar una transacción compleja. Por ejemplo, un OrderService que, al procesar un pedido, invoca UpdateProductStockUseCase, CreateOrderUseCase y SendEmailConfirmationUseCase.
+- Lógica Compartida entre Casos de Uso: Si hay alguna lógica de negocio que es común a varios casos de uso pero que no pertenece directamente a una entidad de dominio ni a un caso de uso particular. Esto es menos común si tus casos de uso son granulares y atómicos.
+- Patrones de Transacción Específicos: Si necesitas manejar transacciones de base de datos que abarcan múltiples operaciones de repositorio y quieres encapsular esa lógica en un servicio. (Aunque esto a menudo se puede manejar también dentro de un caso de uso que inyecta el PrismaService directamente para control transaccional si es necesario, o usando un patrón de "Unit of Work").
