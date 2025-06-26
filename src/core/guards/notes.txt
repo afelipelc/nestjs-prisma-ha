@@ -1,0 +1,2 @@
+Aquí se pueden crear guards generales que se vayan a utilizar en toda la aplicación.
+Ejemplo, algún guard para validar un rol

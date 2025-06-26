@@ -1,0 +1,1 @@
+En esta carpeta decorators se crean los decoradores que se comparte o usan en toda la aplicación

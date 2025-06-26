@@ -1,6 +1,6 @@
 import { Product } from '../../domain/entities/product';
 // importa el tipo de Product desde prisma, y asigna un alias, ejemplo: PrismaProduct
-import { Prisma, Product as PrismaProduct} from "../../../../generated/prisma";
+import { Prisma, Product as PrismaProduct} from "../../../../../generated/prisma";
 
 export class ProductMapper {
   static toDomain(prismaProduct: PrismaProduct): Product {

@@ -1,0 +1,1 @@
+En esta carpeta commons se crean las utilerías que se comparte o usan en toda la aplicación
