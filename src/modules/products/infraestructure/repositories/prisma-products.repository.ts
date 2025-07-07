@@ -3,6 +3,7 @@ import { IProductRepository } from "../../domain/interfaces/product-repository.i
 import { Product } from "../../domain/entities/product";
 import { PrismaService } from "../../../../core/databases/prisma.service";
 import { ProductMapper } from "../mappers/product.mapper";
+import { UpdateProductDto } from "../../application/dtos/update-product.dto";
 
 /**
  * Repositorio para productos que usa Prisma
@@ -38,5 +39,29 @@ export class PrismaProductsRepository implements IProductRepository {
     });
 
     return product ? ProductMapper.toDomain(product) : null;
+  }
+
+  /**
+   * Actualizar producto en la base de datos
+   */
+  async update(id: string, product: UpdateProductDto): Promise<Product | null> {
+    const updated = await this.prismaService.product.update({
+      where: {
+        id
+      },
+      data: product
+    });
+
+    return product ? ProductMapper.toDomain(updated) : null;
+  }
+
+  async delete(id: string): Promise<boolean> {
+    const deleted = await this.prismaService.product.delete({
+      where: {
+        id
+      }
+    });
+
+    return !!deleted; // deleted tiene valor ?
   }
 }

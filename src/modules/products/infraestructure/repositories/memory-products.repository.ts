@@ -29,4 +29,12 @@ export class MemoryProductsRepository implements IProductRepository {
   async getById(id: string): Promise<Product | null> {
     return this.#products.find((item) => item.id === id) || null;
   }
+
+  update(id: string, product: Product): Promise<Product | null> {
+    throw new Error("Method not implemented.");
+  }
+
+  delete(id: string): Promise<boolean> {
+    throw new Error("Method not implemented.");
+  }
 }

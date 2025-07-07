@@ -1,8 +1,10 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Put } from '@nestjs/common';
 import { CreateProductUseCase } from '../../application/use-cases/create-product.use-case';
 import { CreateProductDto } from '../../application/dtos/create-product.dto';
 import { Product } from '../../domain/entities/product';
 import { GetProductsUseCase } from '../../application/use-cases/get-products.use-case';
+import { UpdateProductDto } from '../../application/dtos/update-product.dto';
+import { UpdateProductUseCase } from '../../application/use-cases/update-product.use-case';
 
 @Controller('products')
 export class ProductsController {
@@ -11,7 +13,7 @@ export class ProductsController {
     private readonly createProductUseCase: CreateProductUseCase,
     private readonly getProductsUseCase: GetProductsUseCase,
     // private readonly getProductByIdUseCase: GetProductByIdUseCase,
-    // private readonly updateProductUseCase: UpdateProductUseCase,
+    private readonly updateProductUseCase: UpdateProductUseCase,
     // private readonly deleteProductUseCase: DeleteProductUseCase,
   ) {}
 
@@ -29,6 +31,15 @@ export class ProductsController {
     return this.getProductsUseCase.execute();
   }
 
+  @Put(':id')
+  @HttpCode(HttpStatus.OK)
+  async update(
+    @Param('id') id: string,
+    @Body() updateProductDto: UpdateProductDto,
+  ): Promise<Product | null> {
+    return this.updateProductUseCase.execute(id, updateProductDto);
+  }
+
 
   /*
   @Get(':id')
@@ -37,14 +48,7 @@ export class ProductsController {
     return this.getProductByIdUseCase.execute(id);
   }
 
-  @Put(':id')
-  @HttpCode(HttpStatus.OK)
-  async update(
-    @Param('id') id: string,
-    @Body() updateProductDto: UpdateProductDto,
-  ): Promise<Product> {
-    return this.updateProductUseCase.execute(id, updateProductDto);
-  }
+  
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)

@@ -6,6 +6,7 @@ import { GetProductsUseCase } from './application/use-cases/get-products.use-cas
 // import { MemoryProductsRepository } from './infraestructure/repositories/memory-products.repository';
 import { PrismaProductsRepository } from './infraestructure/repositories/prisma-products.repository';
 import { PrismaService } from '../../core/databases/prisma.service';
+import { UpdateProductUseCase } from './application/use-cases/update-product.use-case';
 
 @Module({
   providers: [
@@ -19,6 +20,7 @@ import { PrismaService } from '../../core/databases/prisma.service';
     // casos de uso
     CreateProductUseCase,
     GetProductsUseCase,
+    UpdateProductUseCase
   ],
   controllers: [ProductsController]
 })
