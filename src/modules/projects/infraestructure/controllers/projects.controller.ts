@@ -18,8 +18,8 @@ export class ProjectsController {
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  async create(@Body() createProductDto: CreateProjectDto): Promise<Project | null> {    
-    return this.createProjectUseCase.execute(createProductDto);
+  async create(@Body() createProjectDto: CreateProjectDto): Promise<Project | null> {    
+    return this.createProjectUseCase.execute(createProjectDto);
   }
 
   @Get()
@@ -32,9 +32,9 @@ export class ProjectsController {
   @HttpCode(HttpStatus.OK)
   async update(
     @Param('id') id: string,
-    @Body() updateProductDto: UpdateProjectDto,
+    @Body() updateProjectDto: UpdateProjectDto,
   ): Promise<Project | null> {
-    return this.updateProjectUseCase.execute(id, updateProductDto);
+    return this.updateProjectUseCase.execute(id, updateProjectDto);
   }
 
   @Get(':id')

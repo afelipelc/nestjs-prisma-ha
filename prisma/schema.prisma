@@ -64,4 +64,19 @@ model Project {
   updatedAt   DateTime?
 
   // un proyecto tiene tareas
+  tasks Task[]
+}
+
+model Task {
+  id          String    @default(cuid()) @id
+  name        String    @db.VarChar(128)
+  description String
+  completed   Boolean
+  
+  projectId   String
+  // una tarea pertenece a un proyecto a través de projectId (FK)
+  project Project @relation(fields: [projectId], references: [id])
+
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime?
 }

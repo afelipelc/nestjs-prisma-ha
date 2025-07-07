@@ -44,15 +44,15 @@ export class PrismaProjectsRepository implements IProjectRepository {
   /**
    * Actualizar proyecto en la base de datos
    */
-  async update(id: string, product: UpdateProjectDto): Promise<Project | null> {
+  async update(id: string, project: UpdateProjectDto): Promise<Project | null> {
     const updated = await this.prismaService.project.update({
       where: {
         id
       },
-      data: product
+      data: project
     });
 
-    return product ? ProjectMapper.toDomain(updated) : null;
+    return project ? ProjectMapper.toDomain(updated) : null;
   }
 
   async delete(id: string): Promise<boolean> {
