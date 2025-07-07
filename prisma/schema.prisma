@@ -44,3 +44,24 @@ model Product {
   price           Decimal   @db.Decimal(8, 2) 
   publicPrice     Decimal   @db.Decimal(8, 2)
 }
+
+// estatus de proyecto
+
+enum Status {
+  PENDING
+  STARTED
+  PROCESS
+  COMPLETED
+  CANCELED
+}
+
+model Project {
+  id          String    @default(cuid()) @id
+  name        String    @db.VarChar(128)
+  description String?   @db.VarChar(512)
+  status      Status    @default(PENDING)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime?
+
+  // un proyecto tiene tareas
+}
