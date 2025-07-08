@@ -21,7 +21,7 @@ export class CreateProjectUseCase{
       id: '', // la generación del Id la implementará el repositorio
       name: dto.name,
       description: dto.description
-  });
+    });
     
     return this.projectRepository.create(projectData);
   }

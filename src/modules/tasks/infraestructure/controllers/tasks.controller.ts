@@ -25,7 +25,7 @@ export class TasksController {
     return await this.createTaskUseCase.execute({
       ...createTaskDto,
       projectId,
-  });
+    });
   }
 
   @Get()

@@ -33,7 +33,7 @@ export class CreateTaskUseCase{
       description: dto.description,
       projectId: dto.projectId,
       completed: false,
-  });
+    });
     
     return this.taskRepository.create(taskData);
   }
