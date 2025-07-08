@@ -2,7 +2,7 @@ import { NotFoundException } from "../../../../core/domain/exceptions/not-found.
 
 export class ProjectNotFoundException extends NotFoundException {
   constructor(projectId: string) {
-    super(`El projecto con ID "${projectId}" not ha sido encontrado.`);
+    super(`El proyecto con ID "${projectId}" no ha sido encontrado.`);
     this.name = 'ProjectNotFoundException';
   }
 }

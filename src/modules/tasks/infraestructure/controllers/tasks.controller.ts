@@ -36,7 +36,7 @@ export class TasksController {
     return await this.getTasksByProjectUseCase.execute(projectId);
   }
 
-  @Put(':id')
+  @Put(':id') //   /projects/:projectId/tasks/:id
   @HttpCode(HttpStatus.OK)
   async update(
     @Param('id') id: string,

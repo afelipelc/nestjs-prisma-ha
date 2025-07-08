@@ -16,7 +16,7 @@ export class PrismaProjectsRepository implements IProjectRepository {
   async create(project: Project): Promise<Project | null> {
 
     // omitir ID y createdAt de los datos del nuevo proyecto
-    const { id, createdAt, ...projectData } = project;
+    const { id, createdAt, tasks, ...projectData } = project;
   
     const newProject = await this.prismaService.project.create({
       data: projectData
@@ -35,6 +35,9 @@ export class PrismaProjectsRepository implements IProjectRepository {
     const project = await this.prismaService.project.findUnique({
       where: {
         id
+      },
+      include: {
+        tasks: true,
       }
     });
 

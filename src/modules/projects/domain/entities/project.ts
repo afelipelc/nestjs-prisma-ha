@@ -1,3 +1,4 @@
+import { Task } from "../../../tasks/domain/entities/task";
 import { ProjectStatus } from "../enums/project-status.enum";
 
 /**
@@ -13,13 +14,16 @@ export class Project {
   createdAt: Date;
   updatedAt?: Date;
 
+  tasks?: Task[];
+
   constructor (data: {
     id: string,
     name: string,
     description: string,
     status?: ProjectStatus,
     createdAt?: Date,
-    updatedAt?: Date
+    updatedAt?: Date,
+    tasks?: Task[],
   }){
     this.id = data.id;
     this.name = data.name;
@@ -30,6 +34,7 @@ export class Project {
 
     this.createdAt = data.createdAt || new Date();
     this.updatedAt = data.updatedAt;
+    this.tasks = data.tasks;
   }
 
   /**
@@ -44,6 +49,7 @@ export class Project {
       status: this.status,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
+      tasks: this.tasks,
     }
   }
 
