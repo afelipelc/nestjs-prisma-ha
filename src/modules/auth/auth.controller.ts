@@ -10,7 +10,7 @@ export class AuthController {
 
   @Public() // para volver la ruta a pública (sin JWT)
   @Post('signup')
-  signUp(@Body() createUserDto: CreateUserDto) {
+  signUp(@Body() createUserDto: CreateUserDto) {    
     return this.authService.createUser(createUserDto);
   }
 
