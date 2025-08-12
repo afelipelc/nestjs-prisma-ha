@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post, Request, UseGuards } from '@nestjs/common';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from '../users/dto/create-user.dto';
@@ -18,6 +18,7 @@ export class AuthController {
   @UseGuards(LocalAuthGuard) // LocalAuthGuard se encarga
   // de la validación de la credencial
   @Post('login')
+  @HttpCode(HttpStatus.OK)
   signIn(@Request() req) {
     // devolver el JWT del usuario autenticado 
     return this.authService.login(req.user);

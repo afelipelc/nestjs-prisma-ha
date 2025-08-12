@@ -1,10 +1,12 @@
-import { Controller, Get, Request, UseGuards } from '@nestjs/common';
+import { Controller, Get, HttpCode, HttpStatus, Request, UseGuards } from '@nestjs/common';
 import { AppService } from './app.service';
+import { Public } from './core/decorators/public.decorator';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
+  @Public()
   @Get()
   getHello(): string {
     // "delegar" la respuesta al servicio
@@ -12,6 +14,7 @@ export class AppController {
   }
 
   @Get('profile')
+  @HttpCode(HttpStatus.OK)
   getProfile(@Request() req) {
     return req.user;
   }
