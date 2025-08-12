@@ -59,6 +59,9 @@ describe('Acceder al perfil de usuario', () => {
       .then(({body}) => {
         console.log(body);
 
+        // evaluar que trae el campo lastname
+        // expect(body.lastname).toBeDefined();
+
         // analizar la respuesta recibida
         expect(body.username).toEqual(process.env.TEST_USER);
         // debe traer name (nombre)
